@@ -36,12 +36,12 @@ func Start() {
 		go func(t Timer) {
 			for {
 				select {
-				case <-t.C():
-					t.Do()
-					t.Next()
 				case <-stop:
 					wg.Done()
 					return
+				case <-t.C():
+					t.Do()
+					t.Next()
 				}
 			}
 		}(t)
